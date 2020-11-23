@@ -29,4 +29,15 @@ public class ExpenseController {
         Expense expenseone=expenseService.save(expense);
         return new ResponseEntity<Expense>(expenseone, HttpStatus.OK);
     }
+
+    @GetMapping("/expenses/{id}")
+    public ResponseEntity<Expense>get(@PathVariable("id")Long id){
+        Expense expense=expenseService.findById(id);
+        return new ResponseEntity<Expense>(expense, HttpStatus.OK);
+    }
+    @DeleteMapping("/expenses/{id}")
+    public ResponseEntity<String>delete(@PathVariable("id")Long id){
+        expenseService.delete(id);
+        return new ResponseEntity<String>("expense is deleted successfully", HttpStatus.OK);
+    }
 }
